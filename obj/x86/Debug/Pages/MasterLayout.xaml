@@ -1,0 +1,129 @@
+﻿<Page
+    x:Class="PetShop.Pages.MasterLayout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PetShop.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Windows.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <!--
+    Some notes :
+    1.Navigation Structures
+    <NavigationView>=><NavigationView.MenuItems> => & <NavigationViewItem Icon="..." Content="..." Tag="..."/>
+                                                        & <NavigationViewItemSeparator>
+                                                        & <NavigationViewItemHeader x:Name="..." Content="...">
+                                                        & <NavigationViewItem.Icon>=><FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#...;"/>
+    ********************************************************************************************************************************************
+    2.Splitview Layout
+    <SplitView x:Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="false" >
+        <SplitView.Pane>
+            <StackPanel Background="Gray">
+                <SymbolIcon Symbol="GlobalNavigationButton" Tapped="SymbolIcon_Tapped" Margin="10 2 10 5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <SymbolIcon Symbol="Account" Tapped="SymbolIcon_Tapped" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <HyperlinkButton  Tag="Register" Click="HyperlinkButton_Click" >Register</HyperlinkButton>
+                <HyperlinkButton Tag="Login" Click="HyperlinkButton_Click" >Login</HyperlinkButton>
+                <HyperlinkButton Tag="Myinfo" Click="HyperlinkButton_Click">My information</HyperlinkButton>
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content >
+            <Frame x:Name="MainContent"></Frame>
+        </SplitView.Content>
+    </SplitView>
+    ********************************************************************************************************************************************
+    3.Some Properties
+    3.1.x:name dùng để truy xuât các thẻ trong xaml từ behind code và chính từ các tag trong xaml
+    https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit
+    http://materialdesigninxaml.net/
+    -->
+
+
+    <Grid>
+        
+
+        <NavigationView x:ConnectionId='2' x:Name="Navigation"                           
+                Margin="0,12,0,0"
+                                                              
+                                                    
+                IsTabStop="False"
+                Header="Let's enjoy your passion!"
+                IsSettingsVisible="true"
+                IsBackEnabled="True"
+                                                        
+                        PaneDisplayMode="Top">
+            <!--header-->
+            <NavigationView.PaneHeader>
+                <Image Source="/Assets/Background/background1.jpg" Stretch="UniformToFill"/>
+            </NavigationView.PaneHeader>
+            <!--body-->
+            <NavigationView.MenuItems>
+                
+                <NavigationViewItem  Icon="Home" Content="Home" Tag="Nav_Home" />
+
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem Content="My music" Tag="Nav_MyMusic ">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7F6;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                
+                <NavigationViewItem Content="Song Form" Tag="Nav_SongForm">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE898;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                
+                <NavigationViewItem Content="Newest Song" Tag="Nav_NewestSong">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Mdl2 Assets" Glyph="&#xE8D6;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                
+                <NavigationViewItem Icon="Account" Content="Log in" Tag="Nav_Login" />
+                <NavigationViewItem Icon="Add" Content="Register" Tag="Nav_Register" />
+
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem>
+                    <TextBlock x:ConnectionId='3' x:Name="Time" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </NavigationViewItem >
+                
+                
+                <NavigationViewItem Icon="Account" Content="FileHandle" Tag="Nav_FileHandle"/>
+
+
+            </NavigationView.MenuItems>
+            <!--footer-->
+
+            <!--suggest box-->
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox x:ConnectionId='4' x:Name="NavViewSearchBox" QueryIcon="Find"/>
+            </NavigationView.AutoSuggestBox>
+            
+            <!--FrameContent-->
+            <ScrollViewer>
+                <Frame x:ConnectionId='5' x:Name="MainContent">
+
+                </Frame>
+            </ScrollViewer>
+        </NavigationView>
+
+        <VisualStateManager.VisualStateGroups>
+            <!--set giới hạn để thay đổi giao diện trên các thiết bị-->
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--khi nào mở trạng thái này lên-->
+                        <AdaptiveTrigger>
+
+                        </AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+    </Grid>
+</Page>
+
